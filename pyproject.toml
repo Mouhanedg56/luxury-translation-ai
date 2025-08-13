@@ -1,0 +1,81 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "luxury-translation-ai"
+version = "0.1.0"
+description = "AI translation engine specialized for luxury fashion retailers"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Luxury Translation AI Team"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "pydantic>=2.10.0",
+    "pydantic-ai>=0.0.12",
+    "openai>=1.3.0",
+    "anthropic>=0.7.0",
+    "beautifulsoup4>=4.12.0",
+    "python-multipart>=0.0.6",
+    "websockets>=12.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.5.0",
+]
+
+test = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "httpx>=0.24.0",
+    "pytest-mock>=3.10.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/luxury-translation-ai/luxury-translation-ai"
+Repository = "https://github.com/luxury-translation-ai/luxury-translation-ai"
+Issues = "https://github.com/luxury-translation-ai/luxury-translation-ai/issues"
+
+[project.scripts]
+luxury-translation-server = "src.app:main"
+luxury-translation-demo = "demo.luxury_translation_demo:main"
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+addopts = "-v --tb=short"
+asyncio_mode = "auto"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+]
